@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinaria - Carrito de Compras</title>
+    <link rel="stylesheet" href="carrito.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1>Veterinaria 🐾</h1>
+            <span>Productos de calidad para tu mascota</span>
+        </div>
+        <div class="cart-summary" onclick="abrirModalCarrito()">
+            🛒 Total: $<span id="cartTotal">0</span>
+        </div>
+    </header>
+
+    <div class="action-buttons">
+        <a href="menu.html" class="btn btn-primary">← Volver a la página principal</a>
+        <button class="btn btn-danger" onclick="vaciarCarrito()">🗑️ Vaciar carrito</button>
+        <button class="btn btn-success" onclick="abrirModalCarrito()">🛍️ Ver carrito</button>
+    </div>
+
+    <!-- Contenedor de productos -->
+    <div id="productContainer" class="products-container"></div>
+
+    <!-- Modal del carrito -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🛒 Tu Carrito de Compras</h2>
+                <span class="close-modal" onclick="cerrarModalCarrito()">&times;</span>
+            </div>
+            
+            <div id="cartItemsContainer">
+                <!-- Los items del carrito se renderizarán aquí -->
+            </div>
+
+            <div class="payment-methods">
+                <h3>Métodos de pago</h3>
+                <div class="payment-options">
+                    <div class="payment-option" onclick="seleccionarPago('efectivo', this)">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='6' width='20' height='12' rx='2'%3E%3C/rect%3E%3Ccircle cx='12' cy='12' r='2'%3E%3C/circle%3E%3Cpath d='M6 12h.01M18 12h.01'%3E%3C/path%3E%3C/svg%3E" alt="Efectivo">
+                        <div>Efectivo</div>
+                    </div>
+                    <div class="payment-option" onclick="seleccionarPago('tarjeta', this)">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='1' y='4' width='22' height='16' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='1' y1='10' x2='23' y2='10'%3E%3C/line%3E%3C/svg%3E" alt="Tarjeta">
+                        <div>Tarjeta</div>
+                    </div>
+                    <div class="payment-option" onclick="seleccionarPago('paypal', this)">
+                        <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" alt="PayPal">
+                        <div>PayPal</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PayPal Button Container -->
+            <div id="paypal-button-container" class="paypal-button-container" style="display: none;"></div>
+
+            <div class="cart-total">
+                <span>Total a pagar:</span>
+                <span>$<span id="modalCartTotal">0</span></span>
+            </div>
+
+            <button class="btn btn-success" style="width: 100%; margin-top: 1rem;" onclick="procesarPago()">
+                💳 Proceder al pago
+            </button>
+        </div>
+    </div>
+
+    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=MXN"></script>
+    <script src="carrito.js"></script>
+</body>
+</html>
